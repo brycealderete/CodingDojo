@@ -1,0 +1,37 @@
+﻿@model User
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <a href="LoginPage">Login page</a>
+</div>
+<div class="container">
+    <div class="row-mt-10-mb-10">
+        <div class="col-sm-6">
+            <form asp-action="CreateUser" asp-controller="Home" method="POST">
+                <label asp-for="FirstName"></label>
+                <span class="text-danger" asp-validation-for="FirstName"></span>
+                <input class="form-control" asp-for="FirstName">
+                <br>
+                <label asp-for="LastName"></label>
+                <span class="text-danger" asp-validation-for="LastName"></span>
+                <input class="form-control" asp-for="LastName" >
+                <br>
+                <label asp-for="Email"></label>
+                <span class="text-danger" asp-validation-for="Email"></span>
+                <input class="form-control" asp-for="Email" >
+                <br>
+                <label asp-for="Password"></label>
+                <span class="text-danger" asp-validation-for="Password"></span>
+                <input class="form-control" asp-for="Password" >
+                <label asp-for="ConfirmPW"></label>
+                <span class="text-danger" asp-validation-for="ConfirmPW"></span>
+                <input class="form-control" asp-for="ConfirmPW" >
+                
+                <input type="submit" value="Submit">
+            </form>
+            </div>
+
+            
+            
+        </div>
+    </div>

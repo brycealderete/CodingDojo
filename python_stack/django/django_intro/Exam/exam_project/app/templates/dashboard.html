@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <title>Quote Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 	
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h3>Welcome {{user_info.firstname}} {{user_info.lastname}}!!</h3>
+                </div>
+                <div class="col-sm-5"></div>
+                <div class="col-sm-3">
+                    <a href="/dashboard/{{user_info.id}}/edit">Edit My Account</a>
+                    <form action="/logout/{{user_info.id}}" method="POST">
+                        {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row"><p></p></div>
+            <div class="row">
+                <div class="quotes col-sm-4">
+                    <p>Quotes</p>
+                    {% for quotes in all_quotes %}
+                    <div class="quote">
+                        <p>{{quotes.author}}"{{quotes.quote}}"</p>
+                        <p>Posted by: </p><a href="/dashboard/{{quotes.user.id}}/profile">{{quotes.user.firstname}} {{quotes.user.lastname}}</a>
+                        {%csrf_token%}
+                        {% if quotes.user.id == request.session.userid %}
+                        <form action="/dashboard/delete/{{quotes.id}}" method="POST">
+                        {%csrf_token%}   
+                        <input type="submit" value="Delete Message">
+                        </form>
+                    
+                    
+                    </div>
+                    {% else %}
+                    {%endif%}
+                    {% endfor %}
+                    
+                </div>
+                <div class="quotes col-sm-3"></div>
+                <div class="quotes col-sm-3">
+                    <h5>Add a quote!</h5>
+                    <form action="/dashboard/addquote" method="POST">
+                        {%csrf_token%}
+                        <label for="author">Author:</label><br>
+                        {% for message in messages %}
+                        {% if message.extra_tags == 'author' %}
+                        <span class='col-sm-12 text-danger'>{{message}}</span><br>
+                        {% endif %}
+                        {% endfor %}
+                        <input type="text" name="author"><br>
+                        <label for="quote">Quote:</label><br>
+                        {% for message in messages %}
+                        {% if message.extra_tags == 'quote' %}
+                        <span class='col-sm-12 text-danger'>{{message}}</span><br>
+                        {% endif %}
+                        {% endfor %}
+                        <textarea name="quote" id="" cols="22" rows="3"></textarea>
+                        <input type="submit" value="Add Quote">
+                    </form>
+                </div>
+            </div>
+
+
+                
+                
+            </div>
+        </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

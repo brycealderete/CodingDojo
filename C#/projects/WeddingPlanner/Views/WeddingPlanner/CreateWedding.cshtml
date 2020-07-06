@@ -1,0 +1,41 @@
+@model ViewModel
+@{
+    int? uID= @Context.Session.GetInt32("UserID");
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <H1>Plan Your Wedding</H1>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <a href="/Weddingplanner">Weddings</a>
+            <a href="/Logout">Logout</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <form asp-action="CreateWedding" asp-controller="WeddingPlanner" method="POST">
+                <label asp-for="Wedding.WedderOne"></label>
+                <span class="text-danger" asp-validation-for="Wedding.WedderOne"></span>
+                <input class="form-control" asp-for="Wedding.WedderOne">
+                <br>
+                <label asp-for="Wedding.WedderTwo"></label>
+                <span class="text-danger" asp-validation-for="Wedding.WedderTwo"></span>
+                <input class="form-control" asp-for="Wedding.WedderTwo" >
+                <br>
+                <label asp-for="Wedding.Date"></label>
+                <span class="text-danger" asp-validation-for="Wedding.Date"></span>
+                <input type="date" class="form-control" asp-for="Wedding.Date" >
+                <br>
+                <label asp-for="Wedding.Address"></label>
+                <span class="text-danger" asp-validation-for="Wedding.Address"></span>
+                <input class="form-control" asp-for="Wedding.Address" >
+                <input type="hidden" value="@Model.User.UserId" class="form-control" asp-for="Wedding.UserId" >
+                
+                <input type="submit" value="Create">
+            </form>
+        </div>
+    </div>
+</div>

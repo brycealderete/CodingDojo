@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model ViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1>Register</h1>
+            <form asp-action="CreateUser" asp-controller="Home" method="POST">
+                <label asp-for="User.FirstName"></label>
+                <span class="text-danger" asp-validation-for="User.FirstName"></span>
+                <input class="form-control" asp-for="User.FirstName">
+                <br>
+                <label asp-for="User.LastName"></label>
+                <span class="text-danger" asp-validation-for="User.LastName"></span>
+                <input class="form-control" asp-for="User.LastName" >
+                <br>
+                <label asp-for="User.Email"></label>
+                <span class="text-danger" asp-validation-for="User.Email"></span>
+                <input class="form-control" asp-for="User.Email" >
+                <br>
+                <label asp-for="User.Password"></label>
+                <span class="text-danger" asp-validation-for="User.Password"></span>
+                <input class="form-control" asp-for="User.Password" >
+                <label asp-for="User.ConfirmPW"></label>
+                <span class="text-danger" asp-validation-for="User.ConfirmPW"></span>
+                <input class="form-control" asp-for="User.ConfirmPW" >
+                
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm">
+            <H1>Login</H1>
+            <form asp-action="LogUser" asp-controller="Home" method="POST">
+            <label asp-for="LoginUser.LoginEmail"></label>
+            <span class="text-danger" asp-validation-for="LoginUser.LoginEmail"></span>
+            <input class="form-control" asp-for="LoginUser.LoginEmail" >
+            <br>
+            <label asp-for="LoginUser.LoginPassword"></label>
+            <span class="text-danger" asp-validation-for="LoginUser.LoginPassword"></span>
+            <input class="form-control" asp-for="LoginUser.LoginPassword" >
+            
+            <input type="submit" value="Submit">
+        </form>
+        </div>
+
+            
+            
+    </div>
+</div>

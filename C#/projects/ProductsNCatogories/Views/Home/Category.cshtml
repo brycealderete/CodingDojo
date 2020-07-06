@@ -1,0 +1,37 @@
+@model ViewModel
+<div class="container">
+    <div class="row">
+            <h1 class="text-center display-4"><a href="/">Products</a>   |    Categories</h1>
+            
+    </div>
+    <div class="row">
+        
+        <div class="col-sm-4">
+            <h1>Categories:</h1>
+            @foreach (var item in Model.Category.ProductsInCaegories)
+            {
+                <h3>-->@item.Product.Name</h3>
+            }
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <h1>Add Product</h1>
+            <br>
+            <form asp-action="AddCategoryProduct" asp-controller="Home" class="form-group" method="POST">
+                <input type="hidden" asp-for="ProductsInCaegory.CategoryId" value="@Model.Category.CategoryId">
+                <label asp-for="ProductsInCaegory.ProductId"></label>
+                <span class="text-danger" asp-validation-for="ProductsInCaegory.ProductId"></span>
+                <select asp-for="ProductsInCaegory.ProductId">
+                    @foreach (var item in Model.Products)
+                    {
+                        
+                    <option value="@item.ProductId">@item.Name</option>
+                    }
+                </Select>
+                
+                <input type="Submit" class="form-control">
+            </form>
+        </div>
+        
+    </div>
+</div>

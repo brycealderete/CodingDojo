@@ -1,0 +1,27 @@
+@model ViewModel
+<div class="container">
+    <div class="row">
+            <h1 class="text-center display-4"><a href="/">Products</a>   |    Categories</h1>
+            
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <h1>New Category</h1>
+            <br>
+            <form asp-action="CreateCategory" asp-controller="Home" class="form-group" method="POST">
+                <label asp-for="Category.Name"></label>
+                <span class="text-danger" asp-validation-for="Category.Name"></span>
+                <input class="form-control" asp-for="Category.Name">
+                <input type="Submit" class="form-control">
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-5">
+            <h1>Existing Categories</h1>
+            @foreach (var item in Model.Categories)
+            {
+                <h3><a href="Category/@item.CategoryId">@item.Name</a></h3>
+            }
+        </div>
+    </div>
+</div>

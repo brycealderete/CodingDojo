@@ -1,0 +1,27 @@
+﻿
+@model List<Dish>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to CRUDelicious</h1>
+<div class="container">
+    <div class="row-mt-10-mb-10">
+        <div class="col-sm-6">
+            <p>Check out some relcent dishes!</p>
+        </div>
+    </div>
+    <div class="row-mt-10-mb-10">
+        <div class="Dishes col-sm-4">
+            @foreach (Dish item in Model)           
+            {
+                <p><a href="dishinfo/@item.DishrId">@item.DishName</a> by @item.CheifName </p>
+                
+            }
+            <p></p>
+        </div>
+        <div class="col-sm-4">
+            <a href="addDish">Add a Dish</a>
+        </div>
+    </div>
+</div>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

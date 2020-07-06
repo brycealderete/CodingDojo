@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Privacy Policy";
+    
+}
+@model Dish
+<div class="container">
+    <a href="Index">Home</a>
+    <div class="row text-center">
+        <H1>@Model.DishName</H1>
+        <br>
+        <h3>@Model.CheifName</h3>
+    </div>
+    <div class="row-mt-10"></div>
+    <div class="row-mt-10">
+        <p>@Model.Description</p>
+        <br>
+        <H4>Calories: <p>@Model.Calories</p></H4>
+        <H4>Taste Rating: <p>@Model.TasteRating</p></H4>
+    </div>
+    <div class="row">
+        <div class="com-sm-4">
+        <a href="Delete/@Model.DishrId">Delete</a>
+        </div>
+        <div class="com-sm-4">
+        <a href="Edit/@Model.DishrId">Edit</a>
+        </div>
+    </div>
+</div>
+<h1></h1>
+
+<p>Use this page to detail your site's privacy policy.</p>

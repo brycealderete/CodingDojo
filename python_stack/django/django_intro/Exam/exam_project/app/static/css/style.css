@@ -1,0 +1,13 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    }
+    .quote{
+        display: inline-block;
+        border: solid black 1px;
+        padding: 5px;
+        margin: 5px;
+        width: 300px;
+        
+    }
+}

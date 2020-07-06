@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Trip</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+</head>
+<body>
+    <a href="/">Go Home</a>
+    <div class="addbook">
+        <form action="/trip/addtrip" method="POST">
+        {% csrf_token %}
+        <h1>Add a Trip</h1>
+        <label for="destination">Destination:</label><br>
+        {% for message in messages %}
+        {% if message.extra_tags == 'destination' %}
+        <span class='col-sm-12 text-danger'>{{message}}</span><br>
+        {% endif %}
+        {% endfor %}
+        <input type="text" name="destination"><br>
+        
+        <label for="start_date">Start Date:</label><br>
+        <input type="date" name="start_date" ><br>
+        <label for="end_date">End Date:</label><br>
+        <input type="date" name="end_date" ><br>
+        <label for="plan">Plan</label><br>
+        {% for message in messages %}
+        {% if message.extra_tags == 'plan' %}
+        <span class='col-sm-12 text-danger'>{{message}}</span><br>
+        {% endif %}
+        {% endfor %}
+        <input type="text" name="plan"><br>
+        <input type="submit">
+        </form>
+        
+    </div>
+</body>
+</html>

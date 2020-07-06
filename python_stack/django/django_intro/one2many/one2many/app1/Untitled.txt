@@ -1,0 +1,51 @@
+$ python manage.py shell
+Python 3.8.2 (tags/v3.8.2:7b3ab59, Feb 25 2020, 22:45:29) [MSC v.1916 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from app1 impot *
+  File "<console>", line 1
+    from app1 impot *
+              ^
+SyntaxError: invalid syntax
+>>> from app1 import *
+>>> dojo1=dojo.objects.create(name='seattle dojo',city='seattle',state='washington')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'dojo' is not defined
+>>> dojo1=dojo.objects.create(name='seattle dojo',city='seattle',state='washington'
+... exit
+  File "<console>", line 2
+    exit
+    ^
+SyntaxError: invalid syntax
+>>> dojo.objects.create
+  File "<console>", line 1
+    dojo.objects.create
+    ^
+SyntaxError: invalid syntax
+>>> dojo.objects.create(name='dojo1',city='santa ana',state='california')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'dojo' is not defined
+>>> from app1.models import *
+>>> dojoojo1=dojo.objects.create(name='seattle dojo',city='seattle',state='washington')
+    ^ojo.objects.create(name='dojo1',city='santa ana',state='california')
+SyntaxError: invalid syntax
+>>> dojo.objects.create(name='dojo oakland'city='oakland',state='california')
+>>> le "<console>", line 1
+>>> dojo.objects.create(name='dojoakland'city='oakland',state='california')
+                                                                         ^
+SyntaxError: invalid syntax
+>>> >>> >>> ects.create(name='dojo oakland',city='oakland',state='california')
+>>> le "<console>", line 1
+>>> dojo.objects.create(name='dojo oakland',city='oakland',state='california')
+>>>                                      ^
+>>> axError: invalid syntax
+>>> dojo.objects.create(name='dojo oakland', city='oakland', state='california')
+>>> o: dojo object (3)>
+>>> dojocampus=dojo.objects.all()
+>>> dojocampus.delete
+>>> nd method QuerySet.delete of <QuerySet [<dojo: dojo object (1)>, <dojo: dojo>>> ect (2)>, <dojo: dojo object (3)>]>>
+>>> dojo1=dojo.objects.create(name='seattle dojo',city='seattle',state='washingt>>>
+>>> le "<console>", line 1
+>>> dojo

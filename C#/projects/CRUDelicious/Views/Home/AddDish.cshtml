@@ -1,0 +1,42 @@
+@model Dish
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to CRUDelicious</h1>
+<div class="container">
+    <div class="row-mt-10-mb-10">
+        <div class="col-sm-6">
+            <form asp-action="CreateDish" asp-controller="Home" method="POST">
+            <div class="form-group">
+                <label asp-for="CheifName">Cheif Name:</label>
+                
+                <input class="form-control" asp-for="CheifName" >
+                <br>
+                <label asp-for="DishName">Dish Name:</label>
+                <input class="form-control" asp-for="DishName" >
+                <br>
+                <label asp-for="Calories"># Of Calories:</label>
+                <input class="form-control" asp-for="Calories" >
+                <br>
+                <label asp-for="TasteRating">Taste Rating:</label>
+                <input class="form-control" asp-for="TasteRating" >
+                <br>
+                <label asp-for="Description">Description:</label>
+                <input class="form-control" asp-for="Description" >
+                <br>
+                <input type="submit" value="Submit">
+                
+            </div>
+
+            
+            </form>
+        </div>
+    </div>
+    <div class="row-mt-10-mb-10">
+        <div class="Dishes col-sm-4">
+        <div class="col-sm-4">
+            <a href="/addDish">Add a Dish</a>
+        </div>
+    </div>
+</div>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

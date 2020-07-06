@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Quarantini and chill</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+    </head>
+    <body>
+        <script>
+            $(document).ready(function(){
+                
+                
+                    
+                $('#submit').click(function(){
+                    cityname = $('.city').val();
+                    console.log(cityname);
+                    $.get('https://api.openbrewerydb.org/breweries?by_city='+cityname,function(data) {
+                            console.log(data);                        
+                            function updatemain(num){
+                            $.get('https://api.openbrewerydb.org/breweries/'+num,function(data) {
+                                console.log(data);
+                        
+
+                            
+                                $(".drinkinfo").html("<h3>"+data['name']+"</h3><p>"+data['street']+",</p><p>"+data['city']+", "+data['state']+", "+data['postal_code']+"</p><p>"+data['phone']+"</p><a href='"+data['website_url']+"'>"+data['website_url']+"</a>");
+                            
+                            
+                            
+                            },"json");
+
+
+                            
+                        }
+                        for (var i = 0;i<data.length;i++){
+                                $('.suggestion').append("<button id='"+data[i]['id']+"'>"+data[i]['name']+"</button><p> | </p>")
+
+                            }
+                        $(".suggestion button").click(function(){
+                            console.log($(this).attr("id"));
+                            updatemain($(this).attr("id"));
+                        })
+                            
+                            
+
+                    
+                        console.log(data);
+                        },"json");
+                
+                });
+
+
+                $('#randombutton').click(function(){
+                    $.get('https://www.thecocktaildb.com/api/json/v1/1/random.php',function(data) { 
+                            var arr=[]
+
+                            for (var i = 1;i<15;i++){
+                                if (data.drinks[0]['strIngredient'+i] == null){
+                                break
+                                
+                                }
+                            arr.push([data.drinks[0]['strMeasure'+i] +' - '+ data.drinks[0]['strIngredient'+i]])
+
+
+                            console.log(data.drinks[0]['strIngredient'+i])
+                            console.log(data.drinks[0]['strMeasure'+i])
+                            }
+                            console.log(arr)
+                        
+                        $(".drinkinfo").html('<h3>'+data.drinks[0].strDrink+'</h3> <br> <p>'+arr.join(' , ')+'</p><br><p>'+data.drinks[0].strInstructions+'</p>');
+                        
+                        $(".mainpic").attr('src',data.drinks[0].strDrinkThumb);
+
+                    
+                        console.log(data);
+                    },"json");
+                });
+                $('#search').click(function(){
+                    AlcoholType = $('.liquor').val();
+                    console.log(AlcoholType);
+                    $.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i='+AlcoholType,function(data) {
+
+                        function updatemain(num){
+                            $.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?s='+num,function(data) {
+                        
+                                var arr=[]
+
+
+                                for (var i = 1;i<10;i++){
+                                    if (data.drinks[0]['strIngredient'+i] == null){
+                                    break
+                                    
+                                    }
+                                arr.push([data.drinks[0]['strMeasure'+i] +' - '+ data.drinks[0]['strIngredient'+i]])
+                                
+                                
+                                
+                                console.log(data.drinks[0]['strIngredient'+i])
+                                console.log(data.drinks[0]['strMeasure'+i])
+                                }
+                                console.log(arr)
+                            
+                                $(".drinkinfo").html('<h3>'+data.drinks[0].strDrink+'</h3> <br> <p>'+arr.join(' , ')+'</p><br><p>'+data.drinks[0].strInstructions+'</p>');
+                            
+                                $(".mainpic").attr('src',data.drinks[0].strDrinkThumb);
+                            
+                            
+                                console.log(data);
+                                },"json");
+                    }
+                    
+                        console.log(data);
+                        var suggestionstr =''
+                        for(var j = 0; j<data.drinks.length;j++){
+                            // suggestionstr += "<p id='"+j+"'> "+data.drinks[j].strDrink+" , </p>"
+                            $('.suggestion').append("<p id='"+data.drinks[j].strDrink+"'>"+data.drinks[j].strDrink+"</p><p>,</p>")
+
+                        }
+                        $(".suggestion p").click(function(){
+                            console.log($(this).attr("id"));
+                            updatemain($(this).attr("id"));
+                        })
+                        
+                        // $('.suggestion').html('<h3>Drink Suggestions</h3><br>'+suggestionstr)
+
+                                    
+                },"json");
+                });
+                
+            
+            });
+        </script>
+        <div class="container">
+            <div class="header">
+                <h1>Quarantini and chill</h1>
+                <h3>All your cocktail recipe needs!</h3>
+            </div>
+            <div class="maincontent">
+                <div class="drinkpic">
+                    <img class="mainpic" src="https://www.thecocktaildb.com/images/media/drink/71t8581504353095.jpg" alt="drink pic">
+                </div>
+                <div class="maindrink">    
+                    <h3>Cocktail</h3>
+                    <p>
+                        <label for="city">Seach Cocktails:</label>
+                        <input class="city" type="text" value="Cocktail Name">
+                        <button id="submit">Submit</button>
+                        <button id="randombutton">Roll the dice</button>
+                    </p>
+                    <div class="drinkinfo">
+                    </div>
+                    
+                </div>
+                <div class="alcohol">
+                    <h1>Search by Alcohol</h1>
+                    <p id="searchbar">
+                        
+                        <label for="alcohol">Search types of Alcohol:</label>
+                        <input class="liquor" type="text" value="Alcohol Type">
+                        <button id="search">Submit</button>
+                    </p>
+                    <div class="suggestion">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

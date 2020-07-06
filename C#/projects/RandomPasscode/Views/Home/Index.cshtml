@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h2>You have clicked the button @ViewBag.Count</h2>
+    <h1>@ViewBag.Password</h1>
+    <form asp-action="Index" asp-controller="Home" method="post">
+        <input type="Submit">
+    </form>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

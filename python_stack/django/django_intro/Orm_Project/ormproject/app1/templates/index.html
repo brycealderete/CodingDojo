@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>user form</title>
+    
+</head>
+<body>
+    <div class="topcontainer">
+        <h1>All the Users</h1>
+        <div class="userinfo">
+            
+        </div>
+    </div>
+    <div class="bottomcintainer">
+        <h1>Add a Users</h1>
+        <ul>
+            {% for user in user_info %}
+            <li>{{user.firstname}}
+
+            </li>
+            {% endfor %}
+        </ul>
+        <form action="/create_user" method="POST">
+        {% csrf_token %}
+        <div class="adduser">
+            <label for="firstname">First Name:</label>
+            <input type="text" name="firstname" id="firstname" >
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="lastname" id="lastname">
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email">
+            <label for="age">Age:</label>
+            <input type="number" name="age">
+            <input type="Submit"  value="ADD">
+        </div>
+        <!-- <button>add</button> -->
+        </form>
+    </div>
+    
+    
+</body>
+</html>

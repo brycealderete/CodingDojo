@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books and Authors</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>What would you like to do?</h1>
+    </div>
+    <div class="choices">
+        <form action="/addbook" method="POST">
+        {% csrf_token %}
+        <button name="addbook">Add a Book</button>
+        </form>
+        <form action="/addauthor" method="POST">
+        {% csrf_token %}
+        <button name="addauthor">Add a Author</button>
+        </form>
+    </div>
+    
+</body>
+</html>

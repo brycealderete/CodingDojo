@@ -1,0 +1,43 @@
+@model ViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Welcome, @Model.User.FirstName @Model.User.LastName!</h1>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <h3>Current Balance: <p class="border border-dark">$   @Model.User.Balance</p></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form asp-action="Deposit" asp-controller="Home" method="POST">
+            <h3>Deposit/Withdraw: </h3>
+            <input asp-for="Transaction.Amount" class="pb-10" type="number" >
+            
+            <input value="@Model.User" asp-for="Transaction.User" class="pb-10" type="hidden" >
+            <input value="@Model.User.UserId" asp-for="Transaction.UserId" class="pb-10" type="hidden" >
+            <input type="submit" >
+            </form>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-dark">
+                <tr>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                </tr>
+                @foreach (var item in Model.Transactions)
+                {
+                <tr>
+                    <td>@item.Amount</td>
+                    <td>@item.CreatedAt</td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

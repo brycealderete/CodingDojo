@@ -1,0 +1,29 @@
+@model ViewModel
+<div class="continer">
+    <div class="row">
+        <div class="col-sm-8">
+            <h1>@Model.Wedding.WedderOne and @Model.Wedding.WedderTwo's Wedding!</h1>
+        </div>
+
+        <div class="col-sm-3">
+            <a href="WeddingPlanner">Weddings</a>
+            <a href="Logout">Logout</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="coi-sm-4">
+            <h1>@Model.Wedding.Date</h1>
+            <h3>Guests:</h3>
+            <br>
+            <ul>
+            @foreach (var item in @Model.UsersGoingtoWeddings)
+            {
+                
+                    <li>@item.User.FirstName @item.User.LastName</li>
+                
+                
+            }
+            </ul>
+        </div>
+    </div>
+</div>

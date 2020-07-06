@@ -1,0 +1,12 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    }
+
+    .leftcontainer{
+        display: inline-block;
+    }
+    .rightcontainer{
+        display: inline-block;
+        vertical-align: top;
+    }
