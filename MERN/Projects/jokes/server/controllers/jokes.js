@@ -25,7 +25,7 @@ module.exports={
         .catch(creationErrors=>res.status(400).json(creationErrors));
     },
     update: (req,res)=>{
-        Joke.findOneAndUpdate({_id:req.params.id},req.body, {new:true})
+        Joke.findOneAndUpdate({_id:req.params.id},req.body, {runValidators:true,new:true})
         .then(updatedJoke=>res.json({joke:updatedJoke}))
         .catch(err=>res.json({message:"something went wrong", error:err}));
     },
