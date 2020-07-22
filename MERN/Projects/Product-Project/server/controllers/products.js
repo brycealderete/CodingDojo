@@ -15,7 +15,7 @@ module.exports={
         });
     },
     getOne:(req,res)=>{
-        products.findOne({_id: req.params.id})
+        Product.findOne({_id: req.params.id})
         .then(product=>res.json(product))
         .catch(err=>res.status(400).json(err));
     },
