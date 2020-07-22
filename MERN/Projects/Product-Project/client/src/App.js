@@ -5,6 +5,8 @@ import './App.css';
 import Products from './views/Products'
 import Product from './views/Product'
 import {navigate} from '@reach/router';
+import UpdateProduct from './views/UpdateProduct'
+import { set } from 'mongoose';
 
 function App() {
   const [products,setProducts]=useState([]);
@@ -26,6 +28,26 @@ function App() {
     .catch(err=>{
       console.log(err.response);
     })
+  }
+
+  
+  
+  const deleteProduct=(id)=>{
+    setProducts(products.filter(product => product._id !== id));
+  }
+
+  const updateProduct =(id,product)=>{
+    let index=0;
+    for (let i=0;i<products.length;i++){
+      if (products[i]._id==id){
+        index=i;
+      }
+    }
+    let newProducts=[...products];
+    newProducts[index].title=product.title;
+    newProducts[index].price=product.price;
+    newProducts[index].description=product.description;
+    setProducts(newProducts);
   }
 
 
@@ -74,7 +96,8 @@ function App() {
       </div>
       <Router> 
         <Products path="/" products={products}/>
-        <Product path ="/products/:id"/>
+        <Product path ="/products/:id" deleteProduct={deleteProduct} />
+        <UpdateProduct path="products/edit/:id" updateProduct={updateProduct} />
       </Router>
     </div>
   );
