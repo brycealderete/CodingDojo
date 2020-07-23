@@ -6,7 +6,6 @@ import Products from './views/Products'
 import Product from './views/Product'
 import {navigate} from '@reach/router';
 import UpdateProduct from './views/UpdateProduct'
-import { set } from 'mongoose';
 
 function App() {
   const [products,setProducts]=useState([]);
