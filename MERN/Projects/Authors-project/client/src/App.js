@@ -13,12 +13,18 @@ function App() {
   useEffect(()=>{
     getAuthorAPI();
   },[]);
+  
+  const sorted=(givenAuthors)=>{
 
+    return givenAuthors.sort((a, b) => a.name.localeCompare(b.name))
+  
+
+  }
   const getAuthorAPI=()=>{
     axios.get("http://localhost:8000/api/authors")
     .then(response=>{
       console.log(response.data);
-      setAuthors(response.data);
+      setAuthors(sorted(response.data));
     })
     .catch(err=>{
       console.log(err.response);
@@ -37,12 +43,12 @@ function App() {
     }
     let newAuthors=[...authors];
     newAuthors[index].name=author.name;
-    setAuthors(newAuthors);
+    setAuthors(sorted(newAuthors));
   }
 
   const addAuthor=(author)=>{
     let newAuthors=[...authors,author]
-    setAuthors(newAuthors);
+    setAuthors(sorted(newAuthors));
 
   }
 

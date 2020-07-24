@@ -1,5 +1,4 @@
 let authors =require('../controllers/authors')
-const { Aggregate } = require('mongoose')
 module.exports=(app)=>{
     app.get('/api/authors',authors.index);
     app.get('/api/authors/:id', authors.getOne);

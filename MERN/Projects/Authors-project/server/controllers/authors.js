@@ -3,7 +3,7 @@ const Author=mongoose.model('Author');
 
 module.exports={
     index: (req,res)=>{
-        Author.find()
+        Author.find().sort('name')
         .then((authors)=>{
             console.log ("we are in authors.find");
             console.log(authors);
