@@ -1,13 +1,13 @@
 const mongoose=require('mongoose');
-const Product=mongoose.model('Product');
+const Pet=mongoose.model('Pet');
 
 module.exports={
     index: (req,res)=>{
-        Product.find()
-        .then((products)=>{
-            console.log ("we are in products.find");
-            console.log(products);
-            res.json(products)
+        Pet.find()
+        .then((pets)=>{
+            console.log ("we are in pets.find");
+            console.log(pets);
+            res.json(pets)
         })
         .catch(err=>{
             console.log(err);
@@ -15,22 +15,22 @@ module.exports={
         });
     },
     getOne:(req,res)=>{
-        Product.findOne({_id: req.params.id})
-        .then(product=>res.json(product))
+        Pet.findOne({_id: req.params.id})
+        .then(pet=>res.json(pet))
         .catch(err=>res.status(400).json(err));
     },
     create:(req,res)=>{
-        Product.create(req.body)
-        .then(newProduct=>res.json(newProduct))
+        Pet.create(req.body)
+        .then(newPet=>res.json(newPet))
         .catch(creationErrors=>res.status(400).json(creationErrors));
     },
     update: (req,res)=>{
-        Product.findOneAndUpdate({_id:req.params.id},req.body, {runValidators:true,new:true})
-        .then(updatedProduct=>res.json({product:updatedProduct}))
+        Pet.findOneAndUpdate({_id:req.params.id},req.body, {runValidators:true,new:true})
+        .then(updatedPet=>res.json({pet:updatedPet}))
         .catch(err=>res.json({message:"something went wrong", error:err}));
     },
     delete: (req,res)=>{
-        Product.deleteOne({_id: req.params.id})
+        Pet.deleteOne({_id: req.params.id})
         .then(result=>res.json({result:result}))
         .catch(err=>res.json({message:"Something went wrong", error:err}));
     }

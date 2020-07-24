@@ -5,4 +5,4 @@ mongoose.connect ("mongodb://localhost/Exam_db",{
     useFindAndModify: false
 })
 // replace Exam With what model you create below
-require('../models/Exam');
+require('../models/Pet');
