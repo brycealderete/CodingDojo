@@ -3,7 +3,7 @@ const Pet=mongoose.model('Pet');
 
 module.exports={
     index: (req,res)=>{
-        Pet.find()
+        Pet.find().sort('type')
         .then((pets)=>{
             console.log ("we are in pets.find");
             console.log(pets);

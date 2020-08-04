@@ -16,7 +16,7 @@ function App() {
   
   const sorted=(givenPets)=>{
 
-    return givenPets.sort((a, b) => a.name.localeCompare(b.name))
+    return givenPets.sort((a, b) => a.type.localeCompare(b.type))
   
 
   }
@@ -32,7 +32,7 @@ function App() {
   }
 
   const deletePet =(id)=>{
-    setPets(pets.filter(pet => pet._id !== id));
+    setPets(sorted(pets.filter(pet => pet._id !== id)));
   }
   const updatePet=(id,pet)=>{
     let index=0;

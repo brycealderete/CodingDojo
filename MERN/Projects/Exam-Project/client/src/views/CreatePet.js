@@ -36,6 +36,7 @@ const CreatePet=({addPet})=>{
         })
         .catch(err=>{
             console.log(err.response.data.errors)
+            console.log(err.response)
             let nameError='';
             nameError=err.response.data.errors.name.properties.message;
             let typeError='';
